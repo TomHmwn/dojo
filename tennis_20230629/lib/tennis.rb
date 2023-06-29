@@ -1,9 +1,12 @@
 class Tennis
+  POINT_TRANSLATOR = ["Love", "15", "30"]
+  def initialize
+    @points = 0
+  end
+
   def score(player = nil)
-    if player
-      "15 Love"
-    else
-      "Love All"
-    end
+    @points += 1 if player
+    return "#{POINT_TRANSLATOR[@points]} All" if @points == 0
+    "#{POINT_TRANSLATOR[@points]} #{POINT_TRANSLATOR[0]}"
   end
 end
