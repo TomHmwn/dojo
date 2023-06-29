@@ -1,5 +1,9 @@
 class Tennis
-  def score
-    "Love All"
+  def score(player = nil)
+    if player
+      "15 Love"
+    else
+      "Love All"
+    end
   end
 end
