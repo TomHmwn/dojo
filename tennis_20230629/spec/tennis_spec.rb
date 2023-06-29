@@ -15,28 +15,4 @@ RSpec.describe Tennis do
       expect(tennis.score).to eq args[:score]
     end
   end
-
-  it "Starts the game with Love All" do
-    tennis = Tennis.new
-    0.times { tennis.score(:server)}
-    expect(tennis.score).to eq "Love All"
-  end
-
-  it "returns 15 Love if server wins a point" do
-    tennis = Tennis.new
-    1.times { tennis.score(:server)}
-    expect(tennis.score).to eq "15 Love"
-  end
-
-  it "returns 30 Love if server wins two point" do
-    tennis = Tennis.new
-    2.times { tennis.score(:server) }
-    expect(tennis.score).to eq "30 Love"
-  end
-
-  it "returns 40 Love if server wins three point" do
-    tennis = Tennis.new
-    3.times { tennis.score(:server) }
-    expect(tennis.score).to eq "40 Love"
-  end
 end
