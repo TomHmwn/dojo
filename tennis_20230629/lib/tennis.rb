@@ -1,5 +1,5 @@
 class Tennis
-  POINT_TRANSLATOR = ["Love", "15", "30"]
+  POINT_TRANSLATOR = ["Love", "15", "30", "40"]
   def initialize
     @points = 0
   end
