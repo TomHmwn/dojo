@@ -1,21 +1,34 @@
-class Tennis
-  POINT_TRANSLATOR = ["Love", "15", "30", "40"]
+# frozen_string_literal: true
 
+class Tennis
+  POINT_TRANSLATOR = %w[Love 15 30 40 Deuce Advantage Game].freeze
   def initialize
-    @points = {server: 0, reciever: 0}
+    @points = { server: 0, reciever: 0 }
   end
 
   def score(player = nil)
     @points[player] += 1 if player
+    # if deuce and above
     if @points.values.all? { |point| point >= 3 }
-      return "Deuce" if @points[:server] == @points[:reciever]
-      return "Advantage Server" if @points[:server] > @points[:reciever]
-      return "Advantage Reciever" if @points[:server] < @points[:reciever]
+      return "#{POINT_TRANSLATOR[4]}" if @points[:server] == @points[:reciever]
+      return "#{POINT_TRANSLATOR[5]} Server" if @points[:server] == @points[:reciever] + 1
+      return "#{POINT_TRANSLATOR[5]} Reciever" if @points[:reciever] == @points[:server] + 1
     end
 
-    if @points[:server] == @points[:reciever]
-      return "#{POINT_TRANSLATOR[@points[:server]]} All"
+    # win a game
+    if @points.values.any? { |point| point >= 4 }
+      if @points[:server] > @points[:reciever]
+        return "#{POINT_TRANSLATOR[6]} Server"
+      elsif @points[:server] < @points[:reciever]
+        return "#{POINT_TRANSLATOR[6]} Reciever"
+      end
     end
+
+    # normal score
+    return "#{POINT_TRANSLATOR[@points[:server]]} All" if @points[:server] == @points[:reciever]
+
+    return unless @points.values.all? { |point| point <= 3 }
+
     "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:reciever]]}"
   end
 end
