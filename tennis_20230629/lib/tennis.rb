@@ -26,12 +26,19 @@ class Tennis
   def deuce_and_adv_score
     if @points[:server] == @points[:receiver]
       POINT_TRANSLATOR[4]
+    elsif @points.values.any? { |point| point >= 4 } && (@points[:server] - @points[:receiver]).abs >= 2
+      if @points[:server] > @points[:receiver]
+        "#{POINT_TRANSLATOR[6]} Server"
+      else
+        "#{POINT_TRANSLATOR[6]} Receiver"
+      end
     elsif @points[:server] == @points[:receiver] + 1
       "#{POINT_TRANSLATOR[5]} Server"
     elsif @points[:receiver] == @points[:server] + 1
       "#{POINT_TRANSLATOR[5]} Receiver"
     end
   end
+
 
   def winning?
     @points.values.any? { |point| point >= 4}
