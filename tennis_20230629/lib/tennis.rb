@@ -3,7 +3,7 @@
 class Tennis
   POINT_TRANSLATOR = %w[Love 15 30 40 Deuce Advantage Game].freeze
   def initialize
-    @points = { server: 0, reciever: 0 }
+    @points = { server: 0, receiver: 0 }
   end
 
   def score(player = nil)
@@ -24,12 +24,12 @@ class Tennis
   end
 
   def deuce_and_adv_score
-    if @points[:server] == @points[:reciever]
+    if @points[:server] == @points[:receiver]
       POINT_TRANSLATOR[4]
-    elsif @points[:server] == @points[:reciever] + 1
+    elsif @points[:server] == @points[:receiver] + 1
       "#{POINT_TRANSLATOR[5]} Server"
-    elsif @points[:reciever] == @points[:server] + 1
-      "#{POINT_TRANSLATOR[5]} Reciever"
+    elsif @points[:receiver] == @points[:server] + 1
+      "#{POINT_TRANSLATOR[5]} Receiver"
     end
   end
 
@@ -38,18 +38,18 @@ class Tennis
   end
 
   def winning_score
-    if @points[:server] > @points[:reciever]
+    if @points[:server] > @points[:receiver]
       "#{POINT_TRANSLATOR[6]} Server"
-    elsif @points[:reciever] > @points[:server]
-      "#{POINT_TRANSLATOR[6]} Reciever"
+    elsif @points[:receiver] > @points[:server]
+      "#{POINT_TRANSLATOR[6]} Receiver"
     end
   end
 
   def normal_score
-    if @points[:server] == @points[:reciever]
+    if @points[:server] == @points[:receiver]
       "#{POINT_TRANSLATOR[@points[:server]]} All"
     elsif @points.values.all? { |point| point <= 3 }
-      "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:reciever]]}"
+      "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:receiver]]}"
     end
   end
 end
