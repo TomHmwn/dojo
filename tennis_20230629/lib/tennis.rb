@@ -7,8 +7,9 @@ class Tennis
   end
 
   def score(player = nil)
-    @points[player] += 1 if player
-    # if deuce and above
+    increment_point(player) if player
+
+    # if deuce
     if @points.values.all? { |point| point >= 3 }
       return "#{POINT_TRANSLATOR[4]}" if @points[:server] == @points[:reciever]
       return "#{POINT_TRANSLATOR[5]} Server" if @points[:server] == @points[:reciever] + 1
@@ -26,9 +27,15 @@ class Tennis
 
     # normal score
     return "#{POINT_TRANSLATOR[@points[:server]]} All" if @points[:server] == @points[:reciever]
-
     return unless @points.values.all? { |point| point <= 3 }
-
     "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:reciever]]}"
   end
+
+  private
+
+  def increment_point(player)
+    @points[player] += 1
+  end
+
+
 end
