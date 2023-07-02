@@ -24,39 +24,35 @@ class Tennis
   end
 
   def deuce_and_adv_score
-    if @points[:server] == @points[:receiver]
-      POINT_TRANSLATOR[4]
-    elsif @points.values.any? { |point| point >= 4 } && (@points[:server] - @points[:receiver]).abs >= 2
-      if @points[:server] > @points[:receiver]
-        "#{POINT_TRANSLATOR[6]} Server"
-      else
-        "#{POINT_TRANSLATOR[6]} Receiver"
-      end
-    elsif @points[:server] == @points[:receiver] + 1
-      "#{POINT_TRANSLATOR[5]} Server"
-    elsif @points[:receiver] == @points[:server] + 1
-      "#{POINT_TRANSLATOR[5]} Receiver"
-    end
+    return POINT_TRANSLATOR[4] if same_score
+    win_on_advantage ? (server_winning ? "#{POINT_TRANSLATOR[6]} Server" : "#{POINT_TRANSLATOR[6]} Receiver") : server_winning ? "#{POINT_TRANSLATOR[5]} Server" : "#{POINT_TRANSLATOR[5]} Receiver"
   end
-
 
   def winning?
     @points.values.any? { |point| point >= 4}
   end
 
   def winning_score
-    if @points[:server] > @points[:receiver]
-      "#{POINT_TRANSLATOR[6]} Server"
-    elsif @points[:receiver] > @points[:server]
-      "#{POINT_TRANSLATOR[6]} Receiver"
-    end
+    server_winning ? "#{POINT_TRANSLATOR[6]} Server" : "#{POINT_TRANSLATOR[6]} Receiver"
   end
 
   def normal_score
-    if @points[:server] == @points[:receiver]
-      "#{POINT_TRANSLATOR[@points[:server]]} All"
-    elsif @points.values.all? { |point| point <= 3 }
-      "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:receiver]]}"
-    end
+    same_score ? "#{POINT_TRANSLATOR[@points[:server]]} All" : "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:receiver]]}"
+  end
+
+  def same_score
+     @points[:server] == @points[:receiver]
+  end
+
+  def server_winning
+    @points[:server] > @points[:receiver]
+  end
+
+  # def player_advantage
+  #   (@points[:server] - @points[:receiver]).abs >= 1
+  # end
+
+  def win_on_advantage
+    (@points[:server] - @points[:receiver]).abs >= 2
   end
 end
