@@ -9,12 +9,7 @@ class Tennis
   def score(player = nil)
     increment_point(player) if player
 
-    # if deuce
-    if @points.values.all? { |point| point >= 3 }
-      return "#{POINT_TRANSLATOR[4]}" if @points[:server] == @points[:reciever]
-      return "#{POINT_TRANSLATOR[5]} Server" if @points[:server] == @points[:reciever] + 1
-      return "#{POINT_TRANSLATOR[5]} Reciever" if @points[:reciever] == @points[:server] + 1
-    end
+    return deuce_score if deuce?
 
     # win a game
     if @points.values.any? { |point| point >= 4 }
@@ -37,5 +32,17 @@ class Tennis
     @points[player] += 1
   end
 
+  def deuce?
+    @points.values.all? {|point| point >= 3}
+  end
 
+  def deuce_score
+    if @points[:server] == @points[:reciever]
+      POINT_TRANSLATOR[4]
+    elsif @points[:server] == @points[:reciever] + 1
+      "#{POINT_TRANSLATOR[5]} Server"
+    elsif @points[:reciever] == @points[:server] + 1
+      "#{POINT_TRANSLATOR[5]} Receiver"
+    end
+  end
 end
