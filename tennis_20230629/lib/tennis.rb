@@ -1,15 +1,43 @@
 # frozen_string_literal: true
+class PointTranslator
+  POINTS = %w[Love 15 30 40].freeze
+
+  def self.translate(point)
+    POINTS[point]
+  end
+end
+
+class ScoreConditionChecker
+  def self.winning?(points)
+    (points[:server] >= 4 || points[:receiver] >= 4) && leading_by_2?(points)
+  end
+
+  def self.leading_by_2?(points)
+    (points[:server] - points[:receiver]).abs >= 2
+  end
+
+  def self.leading_by_1?(points)
+    (points[:server] - points[:receiver]).abs >= 1
+  end
+
+  def self.same_score?(points)
+    points[:server] == points[:receiver]
+  end
+
+  def self.server_winning?(points)
+    points[:server] > points[:receiver]
+  end
+end
 
 class Tennis
-  POINT_TRANSLATOR = %w[Love 15 30 40].freeze
   def initialize
     @points = { server: 0, receiver: 0 }
   end
 
   def score(player = nil)
     increment_point(player) if player
-    return deuce_and_adv_score if match_point?
     return winning_score if winning?
+    return match_point_score if match_point?
     normal_score
   end
 
@@ -23,37 +51,21 @@ class Tennis
     @points.values.all? {|point| point >= 3}
   end
 
-  def deuce_and_adv_score
-    return output(nil,"Deuce") if same_score
-    win_on_advantage ? (server_winning ? output("Server", "Game") : output("Receiver", "Game")) : server_winning ? output("Server", "Advantage") : output("Receiver", "Advantage")
+  def match_point_score
+    return output(nil,"Deuce") if ScoreConditionChecker.same_score?(@points)
+    (ScoreConditionChecker.server_winning?(@points) ? output("Server", "Advantage") : output("Receiver", "Advantage")) if ScoreConditionChecker.leading_by_1?(@points)
   end
 
   def winning?
-    @points.values.any? { |point| point >= 4}
+    ScoreConditionChecker.winning?(@points)
   end
 
   def winning_score
-    server_winning ? output("Server", "Game") : output("Receiver", "Game")
+    (ScoreConditionChecker.server_winning?(@points) ? output("Server", "Game") : output("Receiver", "Game"))
   end
 
   def normal_score
-    same_score ? output(nil, "All") : output
-  end
-
-  def same_score
-     @points[:server] == @points[:receiver]
-  end
-
-  def server_winning
-    @points[:server] > @points[:receiver]
-  end
-
-  # def player_advantage
-  #   (@points[:server] - @points[:receiver]).abs >= 1
-  # end
-
-  def win_on_advantage
-    (@points[:server] - @points[:receiver]).abs >= 2
+    ScoreConditionChecker.same_score?(@points) ? output(nil, "All") : output
   end
 
   def output(player = nil, match = nil)
@@ -65,9 +77,9 @@ class Tennis
     when "Deuce"
       "#{match}"
     when "All"
-      "#{POINT_TRANSLATOR[@points[:server]]} #{match}"
+      "#{PointTranslator.translate(@points[:server])} #{match}"
     else
-      "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:receiver]]}"
+      "#{PointTranslator.translate(@points[:server])} #{PointTranslator.translate(@points[:receiver])}"
     end
   end
 end
