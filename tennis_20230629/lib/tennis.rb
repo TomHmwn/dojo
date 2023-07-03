@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Tennis
-  POINT_TRANSLATOR = %w[Love 15 30 40 Deuce Advantage Game].freeze
+  POINT_TRANSLATOR = %w[Love 15 30 40].freeze
   def initialize
     @points = { server: 0, receiver: 0 }
   end
@@ -24,8 +24,8 @@ class Tennis
   end
 
   def deuce_and_adv_score
-    return POINT_TRANSLATOR[4] if same_score
-    win_on_advantage ? (server_winning ? "#{POINT_TRANSLATOR[6]} Server" : "#{POINT_TRANSLATOR[6]} Receiver") : server_winning ? "#{POINT_TRANSLATOR[5]} Server" : "#{POINT_TRANSLATOR[5]} Receiver"
+    return output(nil,"Deuce") if same_score
+    win_on_advantage ? (server_winning ? output("Server", "Game") : output("Receiver", "Game")) : server_winning ? output("Server", "Advantage") : output("Receiver", "Advantage")
   end
 
   def winning?
@@ -33,11 +33,11 @@ class Tennis
   end
 
   def winning_score
-    server_winning ? "#{POINT_TRANSLATOR[6]} Server" : "#{POINT_TRANSLATOR[6]} Receiver"
+    server_winning ? output("Server", "Game") : output("Receiver", "Game")
   end
 
   def normal_score
-    same_score ? "#{POINT_TRANSLATOR[@points[:server]]} All" : "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:receiver]]}"
+    same_score ? output(nil, "All") : output
   end
 
   def same_score
@@ -54,5 +54,20 @@ class Tennis
 
   def win_on_advantage
     (@points[:server] - @points[:receiver]).abs >= 2
+  end
+
+  def output(player = nil, match = nil)
+    case match
+    when "Game"
+      "#{match} #{player}"
+    when "Advantage"
+      "#{match} #{player}"
+    when "Deuce"
+      "#{match}"
+    when "All"
+      "#{POINT_TRANSLATOR[@points[:server]]} #{match}"
+    else
+      "#{POINT_TRANSLATOR[@points[:server]]} #{POINT_TRANSLATOR[@points[:receiver]]}"
+    end
   end
 end
