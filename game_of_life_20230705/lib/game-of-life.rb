@@ -79,10 +79,10 @@ class GameOfLife
       row.each_with_index do |cell, column_index|
         if underpopulation?(row_index, column_index)
           nextBoard[row_index][column_index] = DEAD_CELL
-        elsif overcrowding?(row_index, column_index)
-          nextBoard[row_index][column_index] = DEAD_CELL
         elsif willLive?(row_index, column_index)
           nextBoard[row_index][column_index] = LIVING_CELL
+        elsif overcrowding?(row_index, column_index)
+          nextBoard[row_index][column_index] = DEAD_CELL
         elsif resurrect?(row_index, column_index)
           nextBoard[row_index][column_index] = LIVING_CELL
         else
