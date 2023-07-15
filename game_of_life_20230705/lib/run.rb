@@ -19,6 +19,7 @@ class Animate
     Curses.setpos(y, x)
     Curses.addstr(string)
   end
+
   def initialize
     # curses setup stuff
     Curses.init_screen
@@ -27,7 +28,7 @@ class Animate
     Curses.curs_set 0
     Curses.start_color # enable color output
     @game = GameOfLife.new(10,10)
-    @game.setLivingCell([2, 3], [3, 1], [3,3], [4,2], [4,3] )
+    @game.setLivingCell( [2, 3], [3, 1], [3,3], [4,2], [4,3] )
   end
 
   def run
