@@ -7,6 +7,17 @@ class GameOfLife
     @no_rows = no_rows
     @no_columns = no_columns
     @life_board = initializeGridWithDeadCells
+
+    # @x_range = 0...@no_columns
+    # @y_range = 0...@no_rows
+  end
+
+  def traverse_cells
+    (0...@no_rows).each do |row|
+      (0...@no_columns).each do |column|
+        yield row, column, @life_board[row][column]
+      end
+    end
   end
 
   def initializeGridWithDeadCells
@@ -92,4 +103,6 @@ class GameOfLife
     end
     @life_board = nextBoard
   end
+
+
 end
