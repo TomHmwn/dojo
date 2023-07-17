@@ -45,8 +45,7 @@ I implemented my game of life algorithm visually with the help of Curses Gem
 in order to run it visually
 
 ```bash
-bundle exec ruby life.rb # generate a random starting layout
-
+bundle install
 
 # some examples, see https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns
 bundle exec ruby life.rb glider # start with a 'glider'
@@ -61,6 +60,8 @@ bundle exec ruby life.rb gosper_gun # start with a 'gosper_gun'
 
 ### demo
 
-![Gosper Gilder Gun](records/gosper_gilder_gun.gif)
+**Gosper Gilder Gun**
+![Gosper Gilder Gun](records/gosper_glider_gun.gif)
 
+**Random**
 ![Randomise Dead/Alive cells](records/random.gif)
