@@ -37,6 +37,7 @@ Generation 2:
 
 Source: http://www.codingdojo.org/cgi-bin/index.pl?KataGameOfLife
 
+Run **Rspec** to check all the test cases
 
 ## Implemented with Curses gem
 
@@ -48,15 +49,14 @@ in order to run it visually
 bundle install
 
 # some examples, see https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns
-bundle exec ruby life.rb glider # start with a 'glider'
-bundle exec ruby life.rb blinker # start with a 'blinker'
-bundle exec ruby life.rb block # start with a 'block'
-bundle exec ruby life.rb beacon # start with a 'beacon'
-bundle exec ruby life.rb combination # start with a 'combination'
-bundle exec ruby life.rb pulsar # start with a 'pulsar'
-bundle exec ruby life.rb gosper_gun # start with a 'gosper_gun'
+ruby lib/run.rb glider # start with a 'glider'
+ruby lib/run.rb blinker # start with a 'blinker'
+ruby lib/run.rb block # start with a 'block'
+ruby lib/run.rb beacon # start with a 'beacon'
+ruby lib/run.rb combination # start with a 'combination'
+ruby lib/run.rb pulsar # start with a 'pulsar'
+ruby lib/run.rb gosper_gun # start with a 'gosper_gun'
 ```
-
 
 ### demo
 
