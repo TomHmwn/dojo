@@ -58,7 +58,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 1 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	["#","#",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
@@ -76,7 +76,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 2 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	["#","#",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
@@ -94,7 +94,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 3 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".","#","#",".",".",".",".",".",".","."],
     # 	[".","#",".",".",".",".",".",".",".","."],
@@ -112,7 +112,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 4 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".","#","#",".",".",".",".",".",".","."],
     # 	[".","#",".",".",".",".",".",".",".","."],
@@ -130,7 +130,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 5 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".","#","#",".",".",".",".",".",".","."],
     # 	[".","#",".",".",".",".",".",".",".","."],
@@ -148,7 +148,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 6 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".","#","#",".",".",".",".",".",".","."],
     # 	[".","#",".",".",".",".",".",".",".","."],
@@ -166,7 +166,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 7 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".","#","#",".",".",".",".",".",".","."],
     # 	[".","#",".","#",".",".",".",".",".","."],
@@ -184,7 +184,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 7 neighbouring living cell' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".","#","#","#",".",".",".",".",".","."],
     # 	[".","#",".","#",".",".",".",".",".","."],
@@ -202,7 +202,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 3 living neighbours at top left' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	["#","#",".",".",".",".",".",".",".","."],
     # 	["#",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
@@ -220,7 +220,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 3 living neighbours at bottom left' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
@@ -238,7 +238,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 3 living neighbours at top right' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".","#","#"],
     # 	[".",".",".",".",".",".",".",".",".","#"],
     # 	[".",".",".",".",".",".",".",".",".","."],
@@ -256,7 +256,7 @@ RSpec.describe GameOfLife do
 
   it 'check for 3 living neighbours at bottom right' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
@@ -274,7 +274,7 @@ RSpec.describe GameOfLife do
 
   it 'underpopulation/ cell fewer than 2 neighbour' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	["#","#",".",".",".",".",".",".",".","."],
     # 	[".",".","?",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],
@@ -292,7 +292,7 @@ RSpec.describe GameOfLife do
 
   it 'overcrowding/ cell more than 3 neighbour' do
     game = GameOfLife.new(10, 10)
-      # expected = [
+    # expected = [
     # 	["#","#",".",".",".",".",".",".",".","."],
     # 	["#","?",".",".",".",".",".",".",".","."],
     # 	["#",".",".",".",".",".",".",".",".","."],
@@ -333,7 +333,7 @@ RSpec.describe GameOfLife do
   it 'compute next generation' do
     game = GameOfLife.new(10, 10)
 
-      # before = [
+    # before = [
     # 	["#","#","#",".",".",".",".",".",".","."],
     # 	["#",".",".",".",".",".",".",".",".","."],
     # 	[".",".",".",".",".",".",".",".",".","."],

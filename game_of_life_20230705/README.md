@@ -36,3 +36,31 @@ Generation 2:
 ```
 
 Source: http://www.codingdojo.org/cgi-bin/index.pl?KataGameOfLife
+
+
+## Implemented with Curses gem
+
+I implemented my game of life algorithm visually with the help of Curses Gem
+
+in order to run it visually
+
+```bash
+bundle exec ruby life.rb # generate a random starting layout
+
+
+# some examples, see https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns
+bundle exec ruby life.rb glider # start with a 'glider'
+bundle exec ruby life.rb blinker # start with a 'blinker'
+bundle exec ruby life.rb block # start with a 'block'
+bundle exec ruby life.rb beacon # start with a 'beacon'
+bundle exec ruby life.rb combination # start with a 'combination'
+bundle exec ruby life.rb pulsar # start with a 'pulsar'
+bundle exec ruby life.rb gosper_gun # start with a 'gosper_gun'
+```
+
+
+### demo
+
+![Gosper Gilder Gun](records/gosper_gilder_gun.gif)
+
+![Randomise Dead/Alive cells](records/random.gif)
